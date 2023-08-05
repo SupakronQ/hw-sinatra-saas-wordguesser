@@ -47,6 +47,10 @@ class WordGuesserGame
     @wrong_guesses
   end
 
+  def all_wrong_guess
+    @all_wrong_guesses
+  end
+
   def guess(guess_word)
 
     raise ArgumentError.new("Word is nill.") if guess_word.nil?
@@ -93,7 +97,7 @@ class WordGuesserGame
 
     else 
       :play
-      
+
     end 
 
     

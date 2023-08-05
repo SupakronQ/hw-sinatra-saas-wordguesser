@@ -40,6 +40,7 @@ class WordGuesserApp < Sinatra::Base
   post '/guess' do
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
+    @game.guess(letter)
     redirect '/show'
   end
   
@@ -49,8 +50,14 @@ class WordGuesserApp < Sinatra::Base
   # Notice that the show.erb template expects to use the instance variables
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
-    ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+
+    if @game.check_win_or_lose == :win
+      redirect '/win'
+    elsif @game.check_win_or_lose == :lose
+      redirect '/lose'
+    end
+    erb :show
+
   end
   
   get '/win' do
